@@ -10,6 +10,9 @@ CREATE TABLE animals (
 
 -- ADD Column Species of type string
  ALter table animals ADD species varchar(1000);
+
+-- Task 3
+
 /*
 Create a table named owners with the following columns:
     id: integer (set it as autoincremented PRIMARY KEY)
