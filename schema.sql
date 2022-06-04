@@ -46,10 +46,6 @@ Modify animals table:
     Add column owner_id which is a foreign key referencing the owners table
 */
 
- ALTER TABLE animals DROP COLUMN species;
-
- ALTER TABLE animals ADD COlUMN species_id INT
- ALTER TABLE animals ADD COlUMN owner_id INT
- 
- ALTER TABLE animals ADD CONSTRAINT fk_animals_species FOREIGN KEY (species_id) REFERENCES species(id);
- ALTER TABLE animals ADD CONSTRAINT fk_animals_owners FOREIGN KEY (owner_id) REFERENCES owners(id);
+ALTER TABLE REMOVE species;
+ALTER TABLE animals ADD  owner_id int REFERENCES owners(id);
+ALTER TABLE animals ADD  species_id int REFERENCES species(id);
