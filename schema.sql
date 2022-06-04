@@ -49,3 +49,4 @@ Modify animals table:
 ALTER TABLE REMOVE species;
 ALTER TABLE animals ADD  owner_id int REFERENCES owners(id);
 ALTER TABLE animals ADD  species_id int REFERENCES species(id);
+
