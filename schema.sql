@@ -53,27 +53,27 @@ ALTER TABLE animals ADD  species_id int REFERENCES species(id);
 -------
 
 CREATE TABLE vets (
-  id			INT GENERATED ALWAYS AS IDENTITY,
-  name			VARCHAR(100),
-  age			INT,
-  date_of_graduation	DATE,
-  PRIMARY KEY(id)
-);
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    age integer,
+    date_of_graduation date
+ );
 
 CREATE TABLE specializations (
-  vets_id	INT,
-  species_id	INT,
-  PRIMARY KEY (vets_id, species_id),
-  CONSTRAINT fk_vets FOREIGN KEY(vets_id) REFERENCES vets(id),
-  CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES species(id)
+    id SERIAL PRIMARY KEY,
+    vet_id integer REFERENCES vets(id),
+    species_id integer REFERENCES species(id)
 );
 
 CREATE TABLE visits (
-  animals_id	INT,
-  vets_id	INT,
-  date		DATE,
-  PRIMARY KEY (animals_id, vets_id),
-  CONSTRAINT fk_animals FOREIGN KEY(animals_id) REFERENCES animals(id),
-  CONSTRAINT fk_vets FOREIGN KEY(vets_id) REFERENCES vets(id)
+    id SERIAL PRIMARY KEY,
+    animal_id integer REFERENCES animals(id),
+    vet_id integer REFERENCES vets(id),
+    date date
 );
 
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+CREATE INDEX visits_animal_id ON visits(animal_id);
+CREATE INDEX visits_vet_id ON visits(vet_id);
+CREATE INDEX owners_email ON owners(email);
