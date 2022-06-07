@@ -11,6 +11,7 @@ CREATE TABLE medical_histories (
   status varchar(25) NOT NULL
 )
 
+
 CREATE TABLE treatments (
   id SERIAL PRIMARY KEY,
   type varchar(25) NOT NULL,
@@ -39,3 +40,10 @@ CREATE TABLE invoice_items (
   invoice_id int REFERENCES invoices(id),
   treatment_id int REFERENCES  treatments(id)
 )
+
+CREATE INDEX ON medical_histories (patient_id);
+CREATE INDEX ON medical_treatments (medical_histories_id);
+CREATE INDEX ON medical_treatments (treatments_id);
+CREATE INDEX ON invoices (medical_history_id);
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON invoice_items (treatment_id);
